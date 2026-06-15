@@ -285,6 +285,13 @@ def _resolve_python_module(module: str, module_index: dict[str, str]) -> str | N
         candidate = ".".join(parts[:end])
         if candidate in module_index:
             return module_index[candidate]
+            
+    # Fallback: try suffix match (e.g., if module is "core.config" and index has "backend.core.config")
+    suffix_match = f".{module}"
+    for indexed_module, path in module_index.items():
+        if indexed_module.endswith(suffix_match):
+            return path
+            
     return None
 
 
