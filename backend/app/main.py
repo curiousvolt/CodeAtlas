@@ -15,7 +15,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_REPO_ROOT = Path(os.getenv("REPO_ROOT", PROJECT_ROOT)).resolve()
 CACHE_FILE = Path(os.getenv("SUMMARY_CACHE_FILE", Path(__file__).resolve().parents[1] / ".cache" / "summaries.json"))
 
-app = FastAPI(title="Repository Structure Analysis API")
+app = FastAPI(title="CodeAtlas API", description="Dependency map, metrics, and AI summaries for local codebases.", version="1.0.0")
 cache = SummaryCache(CACHE_FILE)
 
 app.add_middleware(

@@ -1,6 +1,6 @@
-# Repository Structure Analysis and Visualisation System
+# CodeAtlas
 
-Jumping into an unfamiliar codebase is painful. You open the folder, see a wall of files, and have no idea where anything connects. This project fixes that — it scans a local repo, maps out every import relationship, and renders the whole thing as an interactive graph you can actually drag around.
+Jumping into an unfamiliar codebase is painful. You open the folder, see a wall of files, and have no idea where anything connects. CodeAtlas fixes that — it scans a local repo, maps out every import relationship, and renders the whole thing as an interactive graph you can actually drag around.
 
 We built this for our GDSC project submission. The backend does the heavy lifting (Python, FastAPI), the frontend renders the graph (React, React Flow with Dagre layout), and clicking any node hits an AI API to summarise what that file actually does.
 

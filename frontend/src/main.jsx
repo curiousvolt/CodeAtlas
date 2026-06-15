@@ -230,8 +230,8 @@ function App() {
     <div className="app-shell">
       <header className="topbar">
         <div className="brand-block">
-          <h1>Repository Visualizer</h1>
-          <p>Interactive dependency map with file metrics and cached summaries.</p>
+          <h1>CodeAtlas</h1>
+          <p>Map your codebase. Understand it instantly.</p>
         </div>
         <form
           className="path-form"
