@@ -1,0 +1,795 @@
+/* ─── Google Fonts ─── */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+/* ─── Design Tokens (Light) ─── */
+:root,
+[data-theme="light"] {
+  --bg-base: #f4f6f9;
+  --bg-surface: #ffffff;
+  --bg-surface-alt: #f8fafc;
+  --bg-raised: #f1f5f9;
+  --bg-raised-hover: #e2e8f0;
+  --text-primary: #162033;
+  --text-secondary: #667085;
+  --text-tertiary: #334155;
+  --text-heading: #111827;
+  --text-code: #475569;
+  --border: #dce2ea;
+  --border-input: #cbd5e1;
+  --accent: #2563eb;
+  --accent-hover: #1d4ed8;
+  --accent-subtle: #eff6ff;
+  --accent-text: #1e3a8a;
+  --accent-border: #bfdbfe;
+  --success: #22c55e;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --error-bg: #fef2f2;
+  --error-border: #fecaca;
+  --error-text: #991b1b;
+  --node-shadow: 0 8px 22px rgba(20, 29, 43, 0.08);
+  --node-shadow-selected: 0 0 0 3px rgba(37, 99, 235, 0.18), 0 10px 28px rgba(20, 29, 43, 0.12);
+  --flow-shadow: 0 10px 28px rgba(37, 99, 235, 0.12);
+  --handle-border: #ffffff;
+  --skeleton-from: #e2e8f0;
+  --skeleton-to: #f1f5f9;
+  --grid-color: #d2d8e2;
+  --disabled-bg: #94a3b8;
+  --search-bg: rgba(255, 255, 255, 0.92);
+  --search-shadow: 0 4px 16px rgba(20, 29, 43, 0.1);
+  --minimap-bg: rgba(255, 255, 255, 0.85);
+}
+
+/* ─── Design Tokens (Dark) ─── */
+[data-theme="dark"] {
+  --bg-base: #0c0e14;
+  --bg-surface: #151821;
+  --bg-surface-alt: #1c1f2b;
+  --bg-raised: #252836;
+  --bg-raised-hover: #2e3245;
+  --text-primary: #e2e8f0;
+  --text-secondary: #94a3b8;
+  --text-tertiary: #cbd5e1;
+  --text-heading: #f1f5f9;
+  --text-code: #94a3b8;
+  --border: #2a2e3d;
+  --border-input: #374151;
+  --accent: #3b82f6;
+  --accent-hover: #60a5fa;
+  --accent-subtle: #1e293b;
+  --accent-text: #93c5fd;
+  --accent-border: #1e3a8a;
+  --success: #34d399;
+  --warning: #fbbf24;
+  --danger: #f87171;
+  --error-bg: #1c1412;
+  --error-border: #7f1d1d;
+  --error-text: #fca5a5;
+  --node-shadow: 0 8px 22px rgba(0, 0, 0, 0.35);
+  --node-shadow-selected: 0 0 0 3px rgba(59, 130, 246, 0.3), 0 10px 28px rgba(0, 0, 0, 0.35);
+  --flow-shadow: 0 10px 28px rgba(59, 130, 246, 0.15);
+  --handle-border: #151821;
+  --skeleton-from: #252836;
+  --skeleton-to: #2e3245;
+  --grid-color: #2d3140;
+  --disabled-bg: #4b5563;
+  --search-bg: rgba(21, 24, 33, 0.92);
+  --search-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  --minimap-bg: rgba(21, 24, 33, 0.85);
+}
+
+/* ─── Reset ─── */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+:root {
+  color-scheme: light dark;
+  font-family:
+    'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    sans-serif;
+  background: var(--bg-base);
+  color: var(--text-primary);
+}
+
+/* ─── App Shell ─── */
+.app-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-base);
+  transition: background-color 0.3s ease;
+}
+
+/* ─── Topbar ─── */
+.topbar {
+  min-height: 88px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 18px 24px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-surface);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.brand-block h1 {
+  margin: 0;
+  font-size: 22px;
+  line-height: 1.2;
+  color: var(--text-heading);
+  transition: color 0.3s ease;
+}
+
+.brand-block p {
+  margin: 6px 0 0;
+  color: var(--text-secondary);
+  font-size: 14px;
+  transition: color 0.3s ease;
+}
+
+/* ─── Path Form ─── */
+.path-form {
+  display: flex;
+  gap: 10px;
+  width: min(720px, 55vw);
+  align-items: center;
+}
+
+.path-form input {
+  width: 100%;
+  height: 42px;
+  border: 1px solid var(--border-input);
+  border-radius: 8px;
+  padding: 0 12px;
+  color: var(--text-primary);
+  background: var(--bg-surface);
+  transition: border-color 0.2s ease, background-color 0.3s ease, color 0.3s ease;
+}
+
+.path-form input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+.path-form button {
+  min-width: 94px;
+  height: 42px;
+  border: 0;
+  border-radius: 8px;
+  color: #ffffff;
+  background: var(--accent);
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.path-form button:hover:not(:disabled) {
+  background: var(--accent-hover);
+}
+
+.path-form button:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.path-form .mode-button {
+  min-width: 112px;
+  border: 1px solid var(--border-input);
+  color: var(--text-tertiary);
+  background: var(--bg-surface);
+  transition: all 0.2s ease;
+}
+
+.path-form .mode-button:hover:not(:disabled) {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-subtle);
+}
+
+.path-form .mode-button-active {
+  border-color: var(--accent);
+  color: #ffffff;
+  background: var(--accent);
+}
+
+.path-form .mode-button-active:hover:not(:disabled) {
+  color: #ffffff;
+  background: var(--accent-hover);
+}
+
+.path-form button:disabled {
+  background: var(--disabled-bg);
+  cursor: wait;
+}
+
+/* ─── Theme Toggle ─── */
+.theme-toggle {
+  min-width: 42px !important;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  border: 1px solid var(--border-input) !important;
+  border-radius: 8px;
+  color: var(--text-primary) !important;
+  background: var(--bg-surface) !important;
+  cursor: pointer;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.theme-toggle:hover {
+  border-color: var(--accent) !important;
+  background: var(--accent-subtle) !important;
+  transform: rotate(15deg);
+}
+
+/* ─── Workspace Layout ─── */
+.workspace {
+  flex: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 360px;
+  min-height: 0;
+}
+
+.graph-region {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--border);
+  transition: border-color 0.3s ease;
+}
+
+/* ─── Stats Strip ─── */
+.stats-strip {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(120px, 1fr));
+  gap: 1px;
+  background: var(--border);
+  border-bottom: 1px solid var(--border);
+  transition: background-color 0.3s ease;
+}
+
+.metric {
+  min-width: 0;
+  padding: 12px 14px;
+  background: var(--bg-surface);
+  transition: background-color 0.3s ease;
+}
+
+.metric span {
+  display: block;
+  color: var(--text-secondary);
+  font-size: 12px;
+  line-height: 1.3;
+  transition: color 0.3s ease;
+}
+
+.metric strong {
+  display: block;
+  margin-top: 3px;
+  color: var(--text-primary);
+  font-size: 16px;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+  transition: color 0.3s ease;
+}
+
+/* ─── Flow Frame ─── */
+.flow-frame {
+  flex: 1;
+  min-height: calc(100vh - 145px);
+  position: relative;
+}
+
+/* ─── Graph Search ─── */
+.graph-search {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--search-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: var(--search-shadow);
+  transition: border-color 0.2s ease, background-color 0.3s ease;
+}
+
+.graph-search:focus-within {
+  border-color: var(--accent);
+  box-shadow: var(--search-shadow), 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.search-icon {
+  font-size: 14px;
+  flex-shrink: 0;
+  opacity: 0.7;
+}
+
+.graph-search input {
+  width: 180px;
+  height: 32px;
+  border: none;
+  padding: 0 4px;
+  font-size: 13px;
+  color: var(--text-primary);
+  background: transparent;
+  outline: none;
+}
+
+.graph-search input::placeholder {
+  color: var(--text-secondary);
+}
+
+.search-count {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--accent);
+  white-space: nowrap;
+  padding: 2px 8px;
+  border-radius: 6px;
+  background: var(--accent-subtle);
+}
+
+.search-clear {
+  width: 24px;
+  height: 24px;
+  min-width: 24px !important;
+  border: none !important;
+  border-radius: 6px;
+  padding: 0;
+  color: var(--text-secondary) !important;
+  background: transparent !important;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+}
+
+.search-clear:hover {
+  background: var(--bg-raised) !important;
+  color: var(--text-primary) !important;
+}
+
+/* ─── Side Panel ─── */
+.side-panel {
+  min-width: 0;
+  padding: 22px;
+  overflow: auto;
+  background: var(--bg-surface);
+  transition: background-color 0.3s ease;
+}
+
+.side-panel h2,
+.side-panel h3 {
+  margin: 0;
+  color: var(--text-heading);
+  transition: color 0.3s ease;
+}
+
+.side-panel h2 {
+  font-size: 20px;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+
+.side-panel h3 {
+  font-size: 15px;
+}
+
+.muted {
+  color: var(--text-secondary);
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+  transition: color 0.3s ease;
+}
+
+/* ─── Detail Grid ─── */
+.detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  margin: 22px 0;
+  border: 1px solid var(--border);
+  background: var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+/* ─── Relationships ─── */
+.relationships-block {
+  padding: 18px 0;
+  border-top: 1px solid var(--border);
+  transition: border-color 0.3s ease;
+}
+
+.relationship-list {
+  margin-top: 14px;
+}
+
+.relationship-list h4 {
+  margin: 0 0 8px;
+  color: var(--text-tertiary);
+  font-size: 13px;
+  transition: color 0.3s ease;
+}
+
+.relationship-list ul {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.relationship-list li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 8px;
+  padding: 9px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg-surface-alt);
+  color: var(--text-tertiary);
+  font-size: 12px;
+  line-height: 1.35;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.relationship-source,
+.relationship-target {
+  overflow-wrap: anywhere;
+}
+
+.relationship-arrow {
+  color: var(--accent);
+  font-weight: 800;
+}
+
+/* ─── Summary Block ─── */
+.summary-block {
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+  transition: border-color 0.3s ease;
+}
+
+.summary-block p {
+  line-height: 1.55;
+  color: var(--text-primary);
+  transition: color 0.3s ease;
+}
+
+.summary-meta {
+  display: inline-block;
+  color: var(--text-secondary);
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: var(--bg-raised);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ─── Error Box ─── */
+.error-box {
+  margin-top: 18px;
+  padding: 12px;
+  border: 1px solid var(--error-border);
+  border-radius: 8px;
+  color: var(--error-text);
+  background: var(--error-bg);
+  overflow-wrap: anywhere;
+  transition: all 0.3s ease;
+}
+
+/* ─── File Node (Detailed View) ─── */
+.file-node {
+  width: 238px;
+  min-height: 98px;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-left-width: 5px;
+  border-radius: 8px;
+  background: var(--bg-surface);
+  box-shadow: var(--node-shadow);
+  transition: all 0.3s ease;
+}
+
+.file-node-low {
+  border-left-color: var(--success);
+}
+
+.file-node-medium {
+  border-left-color: var(--warning);
+}
+
+.file-node-high {
+  border-left-color: var(--danger);
+}
+
+/* ─── Flow Node (Simplified View) ─── */
+.flow-node {
+  width: 270px;
+  min-height: 118px;
+  padding: 15px;
+  border: 1px solid var(--accent-border);
+  border-top: 5px solid var(--accent);
+  border-radius: 8px;
+  background: var(--bg-surface);
+  box-shadow: var(--flow-shadow);
+  transition: all 0.3s ease;
+}
+
+.flow-node-title {
+  color: var(--text-heading);
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+  transition: color 0.3s ease;
+}
+
+.flow-node-subtitle {
+  margin-top: 6px;
+  color: var(--text-secondary);
+  font-size: 12px;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+  transition: color 0.3s ease;
+}
+
+.flow-node-metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+  color: var(--accent-text);
+  font-size: 12px;
+  transition: color 0.3s ease;
+}
+
+.flow-node-metrics span {
+  padding: 5px 8px;
+  border-radius: 6px;
+  background: var(--accent-subtle);
+  transition: background-color 0.3s ease;
+}
+
+/* ─── File Node Inner ─── */
+.file-node-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.file-name {
+  color: var(--text-heading);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+  transition: color 0.3s ease;
+}
+
+.file-ext {
+  flex: 0 0 auto;
+  padding: 3px 6px;
+  border-radius: 6px;
+  color: var(--text-code);
+  background: var(--bg-raised);
+  font-size: 11px;
+  transition: all 0.3s ease;
+}
+
+.file-path {
+  margin-top: 7px;
+  color: var(--text-secondary);
+  font-size: 12px;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+  transition: color 0.3s ease;
+}
+
+.file-metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+  color: var(--text-tertiary);
+  font-size: 12px;
+  transition: color 0.3s ease;
+}
+
+.file-metrics span {
+  padding: 4px 7px;
+  border-radius: 6px;
+  background: var(--bg-raised);
+  transition: background-color 0.3s ease;
+}
+
+/* ─── Node Handles ─── */
+.node-handle {
+  width: 10px;
+  height: 10px;
+  border: 2px solid var(--handle-border);
+  background: var(--accent);
+}
+
+.node-handle-target {
+  left: -7px;
+}
+
+.node-handle-source {
+  right: -7px;
+}
+
+/* ─── Node Selected State ─── */
+.react-flow__node.selected .file-node {
+  border-color: var(--accent);
+  box-shadow: var(--node-shadow-selected);
+}
+
+.react-flow__node.selected .flow-node {
+  border-color: var(--accent);
+  box-shadow: var(--node-shadow-selected);
+}
+
+/* ─── Dimmed Nodes (Search) ─── */
+.node-dimmed {
+  opacity: 0.18;
+  filter: grayscale(0.6);
+  transition: opacity 0.3s ease, filter 0.3s ease;
+}
+
+/* ─── Skeleton Loading ─── */
+@keyframes skeleton-pulse {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.skeleton-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 4px 0;
+}
+
+.skeleton-line {
+  height: 14px;
+  border-radius: 6px;
+  background: linear-gradient(
+    90deg,
+    var(--skeleton-from) 25%,
+    var(--skeleton-to) 50%,
+    var(--skeleton-from) 75%
+  );
+  background-size: 400% 100%;
+  animation: skeleton-pulse 1.8s ease-in-out infinite;
+}
+
+/* ─── ReactFlow Dark Mode Overrides ─── */
+[data-theme="dark"] .react-flow__background {
+  background-color: var(--bg-base) !important;
+}
+
+[data-theme="dark"] .react-flow__pane {
+  background-color: var(--bg-base) !important;
+}
+
+[data-theme="dark"] .react-flow__controls {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: var(--node-shadow);
+}
+
+[data-theme="dark"] .react-flow__controls-button {
+  background: var(--bg-surface);
+  border-color: var(--border);
+  fill: var(--text-secondary);
+}
+
+[data-theme="dark"] .react-flow__controls-button:hover {
+  background: var(--bg-raised);
+}
+
+[data-theme="dark"] .react-flow__minimap {
+  background: var(--minimap-bg) !important;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+[data-theme="dark"] .react-flow__edge-textbg {
+  fill: var(--bg-surface) !important;
+  fill-opacity: 0.95 !important;
+}
+
+[data-theme="dark"] .react-flow__edge-text {
+  fill: var(--accent-text) !important;
+}
+
+[data-theme="dark"] .react-flow__attribution {
+  background: transparent;
+}
+
+[data-theme="dark"] .react-flow__attribution a {
+  color: var(--text-secondary);
+}
+
+/* ─── Responsive: Tablet ─── */
+@media (max-width: 920px) {
+  .topbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .path-form {
+    width: 100%;
+  }
+
+  .workspace {
+    grid-template-columns: 1fr;
+  }
+
+  .graph-region {
+    border-right: 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .side-panel {
+    min-height: 320px;
+  }
+}
+
+/* ─── Responsive: Mobile ─── */
+@media (max-width: 560px) {
+  .topbar {
+    padding: 16px;
+  }
+
+  .path-form {
+    flex-direction: column;
+  }
+
+  .path-form button {
+    width: 100%;
+  }
+
+  .stats-strip {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .graph-search input {
+    width: 140px;
+  }
+}
