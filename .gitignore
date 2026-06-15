@@ -1,0 +1,40 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Backend runtime
+backend/.venv/
+backend/.cache/
+backend/uvicorn.out.log
+backend/uvicorn.err.log
+*.db
+*.db-shm
+*.db-wal
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/vite.out.log
+frontend/vite.err.log
+
+# Environment - never commit keys
+.env
+.env.*
+!.env.example
+
+# OS / editor
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Misc
+uploads/
