@@ -6,6 +6,9 @@ from pathlib import Path
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
+from dotenv import load_dotenv
+
+load_dotenv()
 
 from .ai import SummaryCache, summarize_file
 from .scanner import read_source_file, scan_repository
